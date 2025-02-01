@@ -1,22 +1,34 @@
+# Backend configuration
 backend:
   name: git-gateway
   branch: main
   repo: zaidhajeer/Portfolio
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Delete {{collection}} "{{slug}}"'
 
+# Media configuration
 media_folder: "assets/images"
 public_folder: "/assets/images"
 
-local_backend: true
-
+# CMS Configuration
+locale: 'en'
+show_preview_links: true
 publish_mode: editorial_workflow
+
+# Site URLs
 site_url: https://portfoliozaidhajeer.netlify.app
 display_url: https://portfoliozaidhajeer.netlify.app
 
+# Collections
 collections:
   - name: "blog"
     label: "Blog Posts"
+    label_singular: "Blog Post"
     folder: "blogs/posts"
     create: true
+    delete: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: "md"
     format: "frontmatter"
@@ -24,11 +36,11 @@ collections:
       preview: true
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Category", name: "category", widget: "string"}
-      - {label: "Featured Image", name: "image", widget: "image"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Publish Date", name: "date", widget: "datetime", required: true}
+      - {label: "Category", name: "category", widget: "string", required: true}
+      - {label: "Featured Image", name: "image", widget: "image", required: true}
+      - {label: "Description", name: "description", widget: "text", required: true}
+      - {label: "Body", name: "body", widget: "markdown", required: true}
 
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> 
