@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1>Portfolio</h1>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="blogs/index.html">Blogs</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modified Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Hi, I'm <span class="typed-text"></span></h1>
+                <p>Chemical engineer transforming complex challenges into scalable, sustainable solutions through data-driven innovation and process optimization.</p>
+                <a href="#contact" class="cta-button">Hire Me</a>
+            </div>
+            <div class="hero-model">
+                <canvas id="modelViewer"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a results-driven chemical engineer specializing in optimizing industrial processes and sustainable solutions. From concept to execution, I tackle complex technical challenges with data-driven precision. Bridging innovation and practicality to design systems that are efficient, scalable, and environmentally resilient.</p>
+            </div>
+            <div class="skill-bars">
+                <div class="skill-bar" data-skill="Process Engineering">
+                    <h4>Process Engineering</h4>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <div class="skill-bar" data-skill="Chemical Plant Design">
+                    <h4>Chemical Plant Design</h4>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <div class="skill-bar" data-skill="Process Safety Management">
+                    <h4>Process Safety Management</h4>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <div class="skill-bar" data-skill="Heat & Mass Transfer">
+                    <h4>Heat & Mass Transfer</h4>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <div class="skill-bar" data-skill="Process Simulation">
+                    <h4>Process Simulation (Aspen/HYSYS)</h4>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <div class="skill-bar" data-skill="Unit Operations">
+                    <h4>Unit Operations</h4>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <h2 class="section-title">My Work</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="/api/placeholder/400/300" alt="Project 1">
+                <div class="portfolio-overlay">
+                    <h3>Project 1</h3>
+                    <p>Web Application</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="/api/placeholder/400/300" alt="Project 2">
+                <div class="portfolio-overlay">
+                    <h3>Project 2</h3>
+                    <p>E-commerce Website</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="/api/placeholder/400/300" alt="Project 3">
+                <div class="portfolio-overlay">
+                    <h3>Project 3</h3>
+                    <p>Mobile App</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <form id="contactForm" class="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+            <div id="formStatus" class="form-status"></div>
+        </form>
+        <div class="social-icons">
+            <a href="https://github.com/zaidhajeer" target="_blank" ><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Portfolio. All rights reserved.</p>
+    </footer>
+
+    <a href="#home" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+<!-- Add these just before closing </body> tag -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

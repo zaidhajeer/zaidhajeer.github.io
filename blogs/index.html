@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog Posts</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="blog-styles.css">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1>Portfolio</h1>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#portfolio">Portfolio</a>
+                <a href="#" class="active">Blogs</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Posts Section -->
+    <section class="blog-section">
+        <h1 class="section-title">Latest Posts</h1>
+        <div class="blog-grid">
+            <!-- Sample blog posts -->
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="../assets/images/blog1.jpg" alt="Blog Post 1">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="date">March 20, 2024</span>
+                        <span class="category">Process Engineering</span>
+                    </div>
+                    <h2>Optimizing Chemical Plant Operations</h2>
+                    <p>Exploring modern approaches to chemical plant optimization using data-driven techniques...</p>
+                    <a href="posts/optimizing-chemical-plant-operations.html" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="../assets/images/blog2.jpg" alt="Blog Post 2">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="date">March 15, 2024</span>
+                        <span class="category">Sustainability</span>
+                    </div>
+                    <h2>Sustainable Process Design</h2>
+                    <p>Implementing sustainable practices in chemical engineering processes...</p>
+                    <a href="posts/sustainable-process-design.html" class="read-more">Read More</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html> 
