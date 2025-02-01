@@ -11,15 +11,15 @@ collections:
     label: "Blog Posts"
     folder: "blogs/posts"
     create: true
+    format: "frontmatter"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Category", name: "category", widget: "string"}
-      - {label: "Featured Image", name: "image", widget: "image"}
+      - {label: "Featured Image", name: "image", widget: "image", required: true}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
-    preview_path: blogs/posts/{{slug}}
-    preview_template: template
+    preview_path: "blogs/posts/{{slug}}"
 
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> 

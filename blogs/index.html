@@ -6,7 +6,6 @@
     <title>Blog Posts - Portfolio</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="blog-styles.css">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -25,51 +24,81 @@
     <section class="blog-section">
         <h1 class="section-title">Latest Posts</h1>
         <div class="blog-grid" id="blogPosts">
-            <!-- Posts will be loaded here -->
+            <!-- Static blog post example (will be replaced by dynamic content) -->
+            <article class="blog-card">
+                <div class="blog-image-container">
+                    <img src="../assets/images/placeholder.jpg" alt="Blog Post" class="blog-image">
+                    <div class="blog-category">Technology</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">February 17, 2024</span>
+                    </div>
+                    <h2 class="blog-title">Sample Blog Post</h2>
+                    <p class="blog-excerpt">This is a sample blog post that will be replaced by your actual content.</p>
+                    <a href="#" class="read-more">
+                        Read More
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </article>
         </div>
     </section>
 
     <script>
+        // Function to load blog posts from markdown files
         async function loadBlogPosts() {
             try {
-                const response = await fetch('posts.json');
-                const data = await response.json();
-                const blogGrid = document.getElementById('blogPosts');
+                const response = await fetch('../admin/config.yml');
+                const config = await response.text();
                 
-                if (!data.posts || data.posts.length === 0) {
-                    blogGrid.innerHTML = '<div class="no-posts">No blog posts available yet.</div>';
-                    return;
+                // Parse blog posts directory from config
+                const postsDir = config.match(/folder: "(.*?)"/)[1];
+                
+                // Fetch list of blog posts
+                const posts = await fetch(`/${postsDir}`).then(res => res.json());
+                
+                if (posts && posts.length > 0) {
+                    const blogGrid = document.getElementById('blogPosts');
+                    blogGrid.innerHTML = ''; // Clear sample post
+                    
+                    // Sort posts by date (newest first)
+                    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    
+                    // Create HTML for each post
+                    posts.forEach(post => {
+                        const postHTML = `
+                            <article class="blog-card">
+                                <div class="blog-image-container">
+                                    <img src="${post.image}" alt="${post.title}" class="blog-image">
+                                    <div class="blog-category">${post.category}</div>
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-meta">
+                                        <span class="blog-date">${new Date(post.date).toLocaleDateString('en-US', {
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric'
+                                        })}</span>
+                                    </div>
+                                    <h2 class="blog-title">${post.title}</h2>
+                                    <p class="blog-excerpt">${post.description}</p>
+                                    <a href="${postsDir}/${post.slug}.html" class="read-more">
+                                        Read More
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </article>
+                        `;
+                        blogGrid.innerHTML += postHTML;
+                    });
                 }
-
-                // Sort posts by date (newest first)
-                const posts = data.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                blogGrid.innerHTML = posts.map(post => `
-                    <article class="blog-card">
-                        <div class="blog-image-container">
-                            <img src="${post.image}" alt="${post.title}" class="blog-image">
-                            <div class="blog-category">${post.category}</div>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <span class="blog-date">${new Date(post.date).toLocaleDateString('en-US', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric'
-                                })}</span>
-                            </div>
-                            <h2 class="blog-title">${post.title}</h2>
-                            <p class="blog-excerpt">${post.description}</p>
-                            <a href="posts/${post.slug}.html" class="read-more">
-                                Read More
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-                `).join('');
             } catch (error) {
                 console.error('Error loading blog posts:', error);
                 document.getElementById('blogPosts').innerHTML = 
@@ -77,6 +106,7 @@
             }
         }
 
+        // Load posts when page loads
         document.addEventListener('DOMContentLoaded', loadBlogPosts);
     </script>
 
