@@ -42,5 +42,3 @@ collections:
       - {label: "Featured Image", name: "image", widget: "image", required: true}
       - {label: "Description", name: "description", widget: "text", required: true}
       - {label: "Body", name: "body", widget: "markdown", required: true}
-
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> 
