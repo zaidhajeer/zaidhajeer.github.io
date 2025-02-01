@@ -32,7 +32,7 @@
     <section class="blog-section">
         <h1 class="section-title">Latest Posts</h1>
         <div class="blog-grid" id="blogPosts">
-            <!-- Posts will be loaded here dynamically -->
+            <!-- Blog posts will be loaded here -->
         </div>
     </section>
 
@@ -55,11 +55,13 @@
     </script>
 
     <script>
-    async function loadBlogPosts() {
+    document.addEventListener('DOMContentLoaded', async () => {
         try {
-            const response = await fetch('../blogs/posts.json');
+            const response = await fetch('posts.json');
             const data = await response.json();
             const blogGrid = document.getElementById('blogPosts');
+            
+            data.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
             
             data.posts.forEach(post => {
                 const postElement = `
@@ -67,8 +69,10 @@
                         <img src="${post.image}" alt="${post.title}" class="blog-image">
                         <div class="blog-content">
                             <h2>${post.title}</h2>
-                            <p class="blog-date">${new Date(post.date).toLocaleDateString()}</p>
-                            <p class="blog-category">${post.category}</p>
+                            <div class="blog-meta">
+                                <span class="date">${new Date(post.date).toLocaleDateString()}</span>
+                                <span class="category">${post.category}</span>
+                            </div>
                             <p class="blog-description">${post.description}</p>
                             <a href="posts/${post.slug}.html" class="read-more">Read More</a>
                         </div>
@@ -79,9 +83,7 @@
         } catch (error) {
             console.error('Error loading blog posts:', error);
         }
-    }
-
-    loadBlogPosts();
+    });
     </script>
 </body>
 </html> 

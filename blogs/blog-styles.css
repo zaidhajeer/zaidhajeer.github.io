@@ -9,23 +9,26 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .blog-card {
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .blog-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
 .blog-image {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
 }
 
@@ -45,33 +48,91 @@
 }
 
 .blog-content h2 {
-    margin: 0 0 1rem;
     font-size: 1.5rem;
+    margin: 0 0 1rem;
+    color: #1a1a1a;
 }
 
-.blog-date, .blog-category {
-    color: #666;
+.blog-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
     font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+    color: #666;
 }
 
 .blog-description {
-    margin: 1rem 0;
+    color: #444;
     line-height: 1.6;
+    margin-bottom: 1.5rem;
 }
 
 .read-more {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1.5rem;
     background: var(--primary-color);
     color: white;
     text-decoration: none;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .read-more:hover {
     background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Single Blog Post Styles */
+.blog-post {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.blog-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.blog-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.featured-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.blog-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.blog-content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-content h2 {
+    margin: 2rem 0 1rem;
+    color: #1a1a1a;
+}
+
+.related-posts {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.related-posts h2 {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 /* Responsive Design */
