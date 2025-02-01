@@ -31,37 +31,8 @@
     <!-- Blog Posts Section -->
     <section class="blog-section">
         <h1 class="section-title">Latest Posts</h1>
-        <div class="blog-grid">
-            <!-- Sample blog posts -->
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="../assets/images/blog1.jpg" alt="Blog Post 1">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="date">March 20, 2024</span>
-                        <span class="category">Process Engineering</span>
-                    </div>
-                    <h2>Optimizing Chemical Plant Operations</h2>
-                    <p>Exploring modern approaches to chemical plant optimization using data-driven techniques...</p>
-                    <a href="posts/optimizing-chemical-plant-operations.html" class="read-more">Read More</a>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="../assets/images/blog2.jpg" alt="Blog Post 2">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="date">March 15, 2024</span>
-                        <span class="category">Sustainability</span>
-                    </div>
-                    <h2>Sustainable Process Design</h2>
-                    <p>Implementing sustainable practices in chemical engineering processes...</p>
-                    <a href="posts/sustainable-process-design.html" class="read-more">Read More</a>
-                </div>
-            </article>
+        <div class="blog-grid" id="blogPosts">
+            <!-- Posts will be loaded here dynamically -->
         </div>
     </section>
 
@@ -81,6 +52,36 @@
                 }
             });
         }
+    </script>
+
+    <script>
+    async function loadBlogPosts() {
+        try {
+            const response = await fetch('../blogs/posts.json');
+            const data = await response.json();
+            const blogGrid = document.getElementById('blogPosts');
+            
+            data.posts.forEach(post => {
+                const postElement = `
+                    <article class="blog-card">
+                        <img src="${post.image}" alt="${post.title}" class="blog-image">
+                        <div class="blog-content">
+                            <h2>${post.title}</h2>
+                            <p class="blog-date">${new Date(post.date).toLocaleDateString()}</p>
+                            <p class="blog-category">${post.category}</p>
+                            <p class="blog-description">${post.description}</p>
+                            <a href="posts/${post.slug}.html" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                `;
+                blogGrid.innerHTML += postElement;
+            });
+        } catch (error) {
+            console.error('Error loading blog posts:', error);
+        }
+    }
+
+    loadBlogPosts();
     </script>
 </body>
 </html> 
