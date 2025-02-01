@@ -178,4 +178,16 @@
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+}
+
+/* Add these to your existing blog-styles.css */
+.loading, .error {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.error {
+    color: #dc3545;
 } 
