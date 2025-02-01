@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}} - Portfolio</title>
+    <meta name="description" content="{{description}}">
+    <title>{{title}} | Portfolio Blog</title>
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../blog-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
     <style>
         /* Blog Post Template Styles */
         .blog-post-container {
@@ -158,28 +160,65 @@
                 <a href="../../index.html">Home</a>
                 <a href="../../index.html#about">About</a>
                 <a href="../../index.html#portfolio">Portfolio</a>
-                <a href="../index.html">Blogs</a>
+                <a href="../index.html" class="active">Blogs</a>
                 <a href="../../index.html#contact">Contact</a>
             </div>
         </div>
     </nav>
 
     <article class="blog-post">
-        <div class="blog-header">
-            <h1>{{title}}</h1>
-            <div class="meta">
-                <span class="date">{{date}}</span>
-                <span class="category">{{category}}</span>
+        <div class="blog-container">
+            <header class="blog-header">
+                <div class="blog-meta">
+                    <span class="category">{{category}}</span>
+                    <time datetime="{{date}}">{{formatDate date}}</time>
+                </div>
+                <h1>{{title}}</h1>
+                <div class="author-info">
+                    <img src="/assets/images/author.jpg" alt="{{author}}" class="author-image">
+                    <div class="author-details">
+                        <span class="author-name">{{author}}</span>
+                        <span class="read-time">{{readingTime}} min read</span>
+                    </div>
+                </div>
+            </header>
+
+            <img src="{{image}}" alt="{{title}}" class="featured-image">
+
+            <div class="blog-content markdown-content">
+                {{markdown body}}
             </div>
-        </div>
-        <img src="{{image}}" alt="{{title}}" class="featured-image">
-        <div class="content">
-            {{body}}
+
+            {{#if tags}}
+            <div class="tags">
+                {{#each tags}}
+                <span class="tag">{{this}}</span>
+                {{/each}}
+            </div>
+            {{/if}}
+
+            <div class="share-buttons">
+                <button onclick="share('twitter')">Share on Twitter</button>
+                <button onclick="share('linkedin')">Share on LinkedIn</button>
+            </div>
+
+            <a href="../index.html" class="back-button">← Back to Blogs</a>
         </div>
     </article>
 
-    <footer>
-        <p>&copy; 2024 Portfolio. All rights reserved.</p>
-    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script>
+        function share(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            
+            const shareUrls = {
+                twitter: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
+                linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+            };
+            
+            window.open(shareUrls[platform], '_blank');
+        }
+    </script>
 </body>
 </html> 
