@@ -24,45 +24,79 @@
     <section class="blog-section">
         <h1 class="section-title">Latest Posts</h1>
         <div class="blog-grid" id="blogPosts">
-            <!-- Blog posts will appear here -->
+            <div class="loading">Loading posts...</div>
         </div>
     </section>
 
     <script>
-        // Simple function to load blog posts
         async function loadBlogPosts() {
-            const blogGrid = document.getElementById('blogPosts');
-            
             try {
-                // Fetch posts from your posts folder
-                const response = await fetch('posts/posts.json');
-                const data = await response.json();
+                const response = await fetch('https://api.github.com/repos/zaidhajeer/Portfolio/contents/blogs/posts');
+                const files = await response.json();
+                const blogGrid = document.getElementById('blogPosts');
                 
-                if (!data.posts || data.posts.length === 0) {
-                    blogGrid.innerHTML = '<p class="no-posts">No blog posts yet.</p>';
+                const posts = [];
+                
+                for (const file of files) {
+                    if (file.name.endsWith('.md')) {
+                        const contentResponse = await fetch(file.download_url);
+                        const content = await contentResponse.text();
+                        
+                        // Parse front matter
+                        const frontMatter = content.split('---')[1];
+                        const postData = {};
+                        frontMatter.split('\n').forEach(line => {
+                            const [key, ...value] = line.split(':');
+                            if (key && value.length) {
+                                postData[key.trim()] = value.join(':').trim();
+                            }
+                        });
+                        
+                        posts.push(postData);
+                    }
+                }
+                
+                if (posts.length === 0) {
+                    blogGrid.innerHTML = '<div class="no-posts">No blog posts available yet.</div>';
                     return;
                 }
-
-                // Display posts
-                const postsHTML = data.posts.map(post => `
+                
+                // Sort posts by date (newest first)
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                blogGrid.innerHTML = posts.map(post => `
                     <article class="blog-card">
-                        <img src="${post.image}" alt="${post.title}" class="blog-image">
+                        <div class="blog-image-container">
+                            <img src="${post.image}" alt="${post.title}" class="blog-image">
+                            <div class="blog-category">${post.category}</div>
+                        </div>
                         <div class="blog-content">
-                            <span class="blog-category">${post.category}</span>
-                            <h2>${post.title}</h2>
-                            <p>${post.description}</p>
-                            <a href="posts/${post.slug}.html" class="read-more">Read More →</a>
+                            <div class="blog-meta">
+                                <span class="blog-date">${new Date(post.date).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                })}</span>
+                            </div>
+                            <h2 class="blog-title">${post.title}</h2>
+                            <p class="blog-excerpt">${post.description}</p>
+                            <a href="posts/${post.title.toLowerCase().replace(/ /g, '-')}.html" class="read-more">
+                                Read More
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
                         </div>
                     </article>
                 `).join('');
-
-                blogGrid.innerHTML = postsHTML;
             } catch (error) {
-                blogGrid.innerHTML = '<p class="error">Error loading blog posts. Please try again later.</p>';
+                console.error('Error loading blog posts:', error);
+                document.getElementById('blogPosts').innerHTML = 
+                    '<div class="error">Error loading blog posts. Please try again later.</div>';
             }
         }
 
-        // Load posts when page loads
         document.addEventListener('DOMContentLoaded', loadBlogPosts);
     </script>
 
