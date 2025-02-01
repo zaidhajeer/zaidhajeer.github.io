@@ -3,25 +3,23 @@ backend:
   branch: main
   repo: zaidhajeer/Portfolio
 
-media_folder: "public/images"
-public_folder: "/images"
+media_folder: "assets/images"
+public_folder: "/assets/images"
 
 collections:
   - name: "blog"
-    label: "Blog"
-    folder: "blogs"
+    label: "Blog Posts"
+    folder: "blogs/posts"
     create: true
-    format: "json"
-    extension: "json"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Slug", name: "slug", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Body", name: "content", widget: "markdown" }
-    preview_template: "template.html"
-    hooks:
-      afterChange:
-        - trigger: "updatePosts"
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Category", name: "category", widget: "string"}
+      - {label: "Featured Image", name: "image", widget: "image"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+    preview_path: blogs/posts/{{slug}}
+    preview_template: template
 
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> 
