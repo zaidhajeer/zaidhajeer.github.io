@@ -1,3 +1,11 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "title": "Sample Blog Post",
+      "date": "2024-01-01",
+      "slug": "sample-blog-post",
+      "description": "This is a sample blog post description",
+      "content": "This is the main content of the blog post."
+    }
+  ]
 } 
