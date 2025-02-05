@@ -603,31 +603,6 @@ function initParticleSystem() {
     });
 }
 
-// Add text reveal animation for sections
-function initScrollReveal() {
-    const observerOptions = {
-        root: null,
-        threshold: 0.2,
-        rootMargin: "0px"
-    };
-
-    const textObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('reveal-text');
-                textObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Select text elements to animate
-    const animatedTexts = document.querySelectorAll('.section-title, .about-description, .portfolio-title');
-    animatedTexts.forEach(text => {
-        text.classList.add('animate-text');
-        textObserver.observe(text);
-    });
-}
-
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initParticleSystem();
@@ -712,7 +687,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         skillObserver.observe(skillBar);
     });
-
-    initTextAnimations();
-    initScrollReveal();
 });
