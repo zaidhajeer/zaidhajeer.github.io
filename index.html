@@ -3,18 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Portfolio</title>
+    <title>Zaid Hajeer | Chemical Engineer & Process Innovation Specialist</title>
+    <meta name="description" content="Chemical engineer specializing in process optimization, sustainable solutions, and industrial innovation. Expert in process safety management and plant design.">
+    <meta name="keywords" content="chemical engineer, process optimization, sustainable solutions, industrial innovation, process safety management, chemical plant design">
+    
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="Zaid Hajeer | Chemical Engineer & Process Innovation Specialist">
+    <meta property="og:description" content="Chemical engineer specializing in process optimization, sustainable solutions, and industrial innovation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zaidhajeer.github.io">
+    <meta property="og:image" content="https://zaidhajeer.github.io/images/profile.png">
+    
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="author" content="Zaid Hajeer">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://zaidhajeer.github.io">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Zaid Hajeer",
+      "jobTitle": "Chemical Engineer",
+      "description": "Chemical engineer specializing in process optimization and sustainable solutions",
+      "url": "https://zaidhajeer.github.io",
+      "sameAs": [
+        "https://github.com/zaidhajeer",
+        "https://www.linkedin.com/in/zaidhajeer/",
+        "https://x.com/Zoz_JO",
+        "https://www.instagram.com/zack.hajeer/",
+        "https://web.facebook.com/Zoz.JOR"
+      ],
+      "knowsAbout": [
+        "Process Engineering",
+        "Chemical Plant Design",
+        "Process Safety Management",
+        "Heat & Mass Transfer",
+        "Process Simulation",
+        "Unit Operations" ,
+        "python" , 
+        "Aspen/HYSYS" ,
+        "CAD" ,
+        "Solidworks" ,
+        "AutoCAD" ,
+        "SolidWorks" ,
+        "AutoCAD" ,
+        "SolidWorks" ,
+        "Matlab" ,
+        "Matplotlib" ,
+        "Numpy" ,
+        "Pandas" ,
+        "Seaborn" ,
+        "SciPy" ,
+        "graphic design" ,
+        "web design" ,
+        "web development" ,
+        "web design" ,
+        "web development" ,
+        "web design" ,
+        "web development" ,
+        
+      ]
+    }
+    </script>
+
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <h1>Portfolio</h1>
+            <h1 id="logo" >Zaid Hajeer</h1>
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
@@ -23,8 +88,7 @@
             <div class="nav-links">
                 <a href="#home" class="active">Home</a>
                 <a href="#about">About</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="blogs/index.html">Blogs</a>
+                <a href="#portfolio">Projects</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -34,7 +98,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Hi, I'm <span class="typed-text"></span></h1>
+                <h1>Hi, I'm <span class="typed-text highlight-text"></span></h1>
                 <p>Chemical engineer transforming complex challenges into scalable, sustainable solutions through data-driven innovation and process optimization.</p>
                 <a href="#contact" class="cta-button">Hire Me</a>
             </div>
@@ -49,7 +113,9 @@
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>I'm a results-driven chemical engineer specializing in optimizing industrial processes and sustainable solutions. From concept to execution, I tackle complex technical challenges with data-driven precision. Bridging innovation and practicality to design systems that are efficient, scalable, and environmentally resilient.</p>
+                <h3 class="name-highlight">Zaid Hajeer</h3>
+                <h4 class="profession-title">Chemical Engineer & Process Innovation Specialist</h4>
+                <p class="about-description highlight-text">I'm a results-driven chemical engineer specializing in optimizing industrial processes and sustainable solutions. From concept to execution, I tackle complex technical challenges with data-driven precision. Bridging innovation and practicality to design systems that are efficient, scalable, and environmentally resilient.</p>
             </div>
             <div class="skill-bars">
                 <div class="skill-bar" data-skill="Process Engineering">
@@ -102,24 +168,89 @@
         <h2 class="section-title">My Work</h2>
         <div class="portfolio-grid">
             <div class="portfolio-item">
-                <img src="/api/placeholder/400/300" alt="Project 1">
+                <img src="images/materials.jpg" 
+                     alt="Python-based materials properties calculation tool for engineering applications" 
+                     loading="lazy"
+                     width="400" 
+                     height="300">
                 <div class="portfolio-overlay">
-                    <h3>Project 1</h3>
-                    <p>Web Application</p>
+                    <h3 class="portfolio-title">Materials properties</h3>
+                    <p class="portfolio-description">Python tool that fetches material properties and performs essential calculations for engineering and research.</p>
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">Python</span>
+                        <span class="portfolio-tag">Material science</span>
+                        <span class="portfolio-tag">Chemical engineering</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="images/portfolio.jpg" 
+                     alt="Modern portfolio website showcasing professional web development skills" 
+                     loading="lazy"
+                     width="400" 
+                     height="300">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Portfolio design project</h3>
+                    <p class="portfolio-description">A refined website project built with HTML, CSS, and JavaScript. It elegantly presents professional achievements and creative projects through a modern, user-friendly design.</p>
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">HTML</span>
+                        <span class="portfolio-tag">CSS</span>
+                        <span class="portfolio-tag">JS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="images/graduation-project.webp" 
+                     alt="Research project on kaolin adsorbent for phenol removal from water" 
+                     loading="lazy"
+                     width="400" 
+                     height="300">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Utilizing Kaolin Adsorbent for Phenol Removal</h3>
+                    <p class="portfolio-description">This graduation project explores kaolin's effectiveness in removing phenol from water through optimized adsorption conditions and process kinetics analysis.</p>
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">Adsorption</span>
+                        <span class="portfolio-tag">Laboratory Techniques</span>
+                        <span class="portfolio-tag">Technical Communication</span>
+                        <span class="portfolio-tag">Data Analysis & Modeling</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="images/upwork.webp" 
+                     alt="Professional translation services portfolio on Upwork platform" 
+                     loading="lazy"
+                     width="400" 
+                     height="300">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Upwork Translation Services</h3>
+                    <p class="portfolio-description">This project delivers high-quality, culturally nuanced translation solutions on the Upwork platform, bridging language barriers and enhancing global communication for diverse clients.</p>
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">Translation</span>
+                        <span class="portfolio-tag">Writing</span>
+                        <span class="portfolio-tag">Communication</span>
+                    </div>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="/api/placeholder/400/300" alt="Project 2">
+                <img src="images/graphic-design.webp" 
+                     alt="Creative graphic design portfolio featuring digital and print media solutions" 
+                     loading="lazy"
+                     width="400" 
+                     height="300">
                 <div class="portfolio-overlay">
-                    <h3>Project 2</h3>
-                    <p>E-commerce Website</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/400/300" alt="Project 3">
-                <div class="portfolio-overlay">
-                    <h3>Project 3</h3>
-                    <p>Mobile App</p>
+                    <h3 class="portfolio-title">Graphic Design Projects</h3>
+                    <p class="portfolio-description">This project features a collection of innovative graphic design works that emphasize creative visual communication. It highlights expertise in layout, typography, and color theory to deliver compelling digital and print media solutions.</p>
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">Photoshop</span>
+                        <span class="portfolio-tag">illustrator</span>
+                        <span class="portfolio-tag">Canva</span>
+                        <span class="portfolio-tag">Social Media Designs</span>
+                        <span class="portfolio-tag">Ads Design</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -145,9 +276,11 @@
             <div id="formStatus" class="form-status"></div>
         </form>
         <div class="social-icons">
-            <a href="https://github.com/zaidhajeer" target="_blank" ><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/zaidhajeer" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/zaidhajeer/" target="_blank"><i class="fab fa-linkedin"  target="_blank"></i></a>
+            <a href="https://x.com/Zoz_JO"  target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/zack.hajeer/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://web.facebook.com/Zoz.JOR" target="_blank"><i class="fab fa-facebook"></i></a>
         </div>
     </section>
 
@@ -165,16 +298,5 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="script.js"></script>
-    <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-    </script>
 </body>
 </html>

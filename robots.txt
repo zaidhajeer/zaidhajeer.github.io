@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zaidhajeer.github.io/sitemap.xml 
