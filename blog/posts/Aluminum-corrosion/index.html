@@ -336,9 +336,32 @@
 
             <footer class="post-footer">
                 <div class="post-tags">
-                    <span class="tag">Innovation</span>
-                    <span class="tag">Technology</span>
-                    <span class="tag">Engineering</span>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            try {
+                                // Get the current post ID from the URL
+                                const postId = 'Aluminum-corrosion'; // Hardcode for this specific post
+                                
+                                // Find the current post data
+                                const currentPost = posts.find(post => post.id === postId);
+                                
+                                // Display tags
+                                if (currentPost && currentPost.tags) {
+                                    const tagsContainer = document.querySelector('.post-tags');
+                                    currentPost.tags.forEach(tag => {
+                                        const tagSpan = document.createElement('span');
+                                        tagSpan.className = 'tag';
+                                        tagSpan.textContent = tag;
+                                        tagsContainer.appendChild(tagSpan);
+                                    });
+                                } else {
+                                    console.log('Post or tags not found:', postId);
+                                }
+                            } catch (error) {
+                                console.error('Error displaying tags:', error);
+                            }
+                        });
+                    </script>
                 </div>
                 <div class="post-share">
                     <span>Share this post:</span>
