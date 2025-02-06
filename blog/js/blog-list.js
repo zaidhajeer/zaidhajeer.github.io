@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const postsHTML = postsToRender.map(post => `
             <article class="blog-card">
-                <a href="posts/${post.id}/index.html" class="blog-link">
+                <a href="./posts/${post.id}/index.html" class="blog-link">
                     <div class="blog-card-content">
                         <div class="blog-meta">
                             <time datetime="${post.date}">${formatDate(post.date)}</time>
