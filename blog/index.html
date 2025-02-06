@@ -34,8 +34,8 @@
     <!-- Fonts and Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="./blog.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/blog/blog.css">
 
     <!-- Schema.org markup -->
     <script type="application/ld+json">
@@ -67,23 +67,30 @@
     </script>
 </head>
 <body>
+    <!-- Fixed Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="../index.html" id="logo">Zaid Hajeer</a>
+            <a href="/" id="logo">Zaid Hajeer</a>
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-                <li><a href="./index.html" class="active">Blog</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="/blog" class="active">Blog</a></li>
             </ul>
         </div>
     </nav>
+
+    <!-- Blog Header -->
+    <header class="blog-header">
+        <h1>Tech & Engineering blog posts</h1>
+        <p>Exploring Innovation, AI, Chemical Engineering, and Future Technologies</p>
+    </header>
 
     <div class="blog-container">
         <aside class="categories-sidebar">
@@ -94,10 +101,12 @@
         <main id="blogPostsContainer"></main>
     </div>
 
+    <!-- Mobile Categories Button -->
     <button class="categories-toggle">
         <i class="fas fa-list"></i>
     </button>
 
+    <!-- Mobile Categories Sidebar -->
     <div class="mobile-categories-sidebar">
         <div class="mobile-sidebar-header">
             <h2>Categories</h2>
@@ -108,7 +117,50 @@
 
     <div class="mobile-overlay"></div>
 
-    <script src="./data/posts.js"></script>
-    <script src="./js/blog-list.js"></script>
+    <!-- Fixed Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Zaid Hajeer. All rights reserved.</p>
+    </footer>
+
+    <script src="/script.js"></script>
+    <script>
+        // Ensure mobile menu works on blog pages
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinksContainer = document.querySelector('.nav-links');
+
+            if (menuToggle && navLinksContainer) {
+                // Toggle menu when clicking the hamburger
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    menuToggle.classList.toggle('active');
+                    navLinksContainer.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!navLinksContainer.contains(e.target) && !menuToggle.contains(e.target)) {
+                        menuToggle.classList.remove('active');
+                        navLinksContainer.classList.remove('active');
+                    }
+                });
+
+                // Close menu when clicking a link
+                navLinksContainer.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        navLinksContainer.classList.remove('active');
+                    });
+                });
+
+                // Prevent menu from closing when clicking inside
+                navLinksContainer.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+    <script src="/blog/data/posts.js"></script>
+    <script src="/blog/js/blog-list.js"></script>
 </body>
 </html> 
