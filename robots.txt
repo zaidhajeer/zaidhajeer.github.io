@@ -38,4 +38,4 @@ Allow: /*.png
 Allow: /*.svg
 
 # Sitemap location
-Sitemap: https://zaidhajeer.github.io/sitemap.xml
+Sitemap: https://zaidhajeer.github.io/sitemap.xml 
