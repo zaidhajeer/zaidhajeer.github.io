@@ -83,33 +83,145 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach(section => observer.observe(section));
 
-// Mobile Navigation
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinksContainer = document.querySelector('.nav-links');
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = anchor.getAttribute('href');
+        if (href === '#') return;
+        
+        const target = document.querySelector(href);
+        const headerOffset = 80;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-menuToggle.addEventListener('click', () => {
-    navLinksContainer.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-});
-
-// Close mobile menu when clicking a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navLinksContainer.classList.remove('active');
-        menuToggle.classList.remove('active');
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
     });
 });
 
-// Back to Top Button
-const backToTop = document.querySelector('.back-to-top');
+// Blog and navigation handling
+const blogLink = document.querySelector('.blog-link');
+if (blogLink) {
+    blogLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = '/blog/index.html';
+    });
+}
 
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
-    } else {
-        backToTop.classList.remove('visible');
+// Enhanced Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinksContainer = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinksContainer) {
+        // Toggle menu when clicking the hamburger
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuToggle.classList.toggle('active');
+            navLinksContainer.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinksContainer.contains(e.target) && !menuToggle.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking a link
+        navLinksContainer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            });
+        });
+
+        // Prevent menu from closing when clicking inside
+        navLinksContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
     }
 });
+
+// Set active state based on current page
+function updateActiveNavLink() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (currentPath.includes('blog') && link.classList.contains('blog-link')) {
+            link.classList.add('active');
+        } else if (currentPath === '/' || currentPath.endsWith('index.html')) {
+            if (link.getAttribute('href') === '#home') {
+                link.classList.add('active');
+            }
+        }
+    });
+}
+
+// Initialize active state
+document.addEventListener('DOMContentLoaded', () => {
+    updateActiveNavLink();
+    
+    // Initialize particle system if it exists
+    if (typeof initParticleSystem === 'function') {
+        initParticleSystem();
+    }
+    
+    // Initialize dynamic navigation if it exists
+    if (typeof initDynamicNavigation === 'function') {
+        initDynamicNavigation();
+    }
+});
+
+// Skill bars animation
+function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-bar');
+    
+    skillBars.forEach(skillBar => {
+        const progressBar = skillBar.querySelector('.progress-bar');
+        if (progressBar) {
+            const skillName = skillBar.dataset.skill;
+            const skills = {
+                'Process Engineering': 90,
+                'Chemical Plant Design': 85,
+                'Process Safety Management': 95,
+                'Heat & Mass Transfer': 88,
+                'Process Simulation': 82,
+                'Unit Operations': 87
+            };
+            
+            if (skillName in skills) {
+                progressBar.style.width = `${skills[skillName]}%`;
+            }
+        }
+    });
+}
+
+// Back to top button
+const backToTopButton = document.querySelector('.back-to-top');
+if (backToTopButton) {
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+
+    backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
 
 // Form Validation and Submission
 const contactForm = document.getElementById('contactForm');
@@ -164,25 +276,6 @@ contactForm.addEventListener('submit', async (e) => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = 'Send Message';
     }
-});
-
-// Smooth scroll for all anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-        e.preventDefault();
-        const href = anchor.getAttribute('href');
-        if (href === '#') return;
-        
-        const target = document.querySelector(href);
-        const headerOffset = 80;
-        const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
-    });
 });
 
 // Portfolio hover effects
@@ -273,136 +366,6 @@ function showPopup(text, targetRect) {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closePopup();
     });
-}
-
-// 3D Model Viewer
-function initModelViewer() {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const canvas = document.getElementById('modelViewer');
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    
-    function updateRendererSize() {
-        const container = canvas.parentElement;
-        renderer.setSize(container.offsetWidth, container.offsetHeight);
-        camera.aspect = container.offsetWidth / container.offsetHeight;
-        camera.updateProjectionMatrix();
-    }
-    updateRendererSize();
-    window.addEventListener('resize', updateRendererSize);
-
-    // Enhanced lighting for better material visibility
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
-    scene.add(ambientLight);
-
-    const mainLight = new THREE.DirectionalLight(0xffffff, 1);
-    mainLight.position.set(5, 5, 5);
-    scene.add(mainLight);
-
-    const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    fillLight.position.set(-5, -5, -5);
-    scene.add(fillLight);
-
-    // Add point light for better reflections
-    const pointLight = new THREE.PointLight(0xffffff, 0.5);
-    pointLight.position.set(0, 5, 0);
-    scene.add(pointLight);
-
-    const flaskGroup = new THREE.Group();
-
-    // Updated glass material with less transparency
-    const glassMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0xdddddd,  // Slightly grey tint
-        transparent: true,
-        opacity: 0.7,     // More opaque
-        roughness: 0.2,   // More surface detail
-        metalness: 0.1,
-        transmission: 0.6, // Less transmission
-        thickness: 0.5,   // Thicker glass
-        clearcoat: 0.5,   // Less clearcoat
-        clearcoatRoughness: 0.2,
-        envMapIntensity: 0.8
-    });
-
-    // Create flask body (conical shape)
-    const bodyGeometry = new THREE.CylinderGeometry(0.8, 2, 4, 32);
-    const flaskBody = new THREE.Mesh(bodyGeometry, glassMaterial);
-
-    // Updated liquid material for better visibility
-    const liquidGeometry = new THREE.CylinderGeometry(0.75, 1.9, 2.5, 32);
-    const liquidMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0x00c8ff,  // Brighter blue
-        transparent: true,
-        opacity: 0.9,     // More opaque liquid
-        roughness: 0.1,
-        metalness: 0.2,   // Slightly more metallic for better reflections
-        transmission: 0.2  // Less transmission
-    });
-
-    const liquid = new THREE.Mesh(liquidGeometry, liquidMaterial);
-    liquid.position.y = -0.75;
-
-    // Create neck with same updated material
-    const neckGeometry = new THREE.CylinderGeometry(0.4, 0.8, 1, 32);
-    const neck = new THREE.Mesh(neckGeometry, glassMaterial);
-    neck.position.y = 2.5;
-
-    // Create rim with same updated material
-    const rimGeometry = new THREE.TorusGeometry(0.5, 0.1, 16, 32);
-    const rim = new THREE.Mesh(rimGeometry, glassMaterial);
-    rim.position.y = 3;
-    rim.rotation.x = Math.PI / 2;
-
-    // Add subtle inner surface for more depth
-    const innerBodyGeometry = new THREE.CylinderGeometry(0.79, 1.98, 4, 32);
-    const innerGlassMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0xcccccc,
-        transparent: true,
-        opacity: 0.3,
-        roughness: 0.1,
-        metalness: 0.2,
-        side: THREE.BackSide
-    });
-    const innerBody = new THREE.Mesh(innerBodyGeometry, innerGlassMaterial);
-    
-    // Add all parts to group
-    flaskGroup.add(flaskBody);
-    flaskGroup.add(innerBody);
-    flaskGroup.add(liquid);
-    flaskGroup.add(neck);
-    flaskGroup.add(rim);
-
-    scene.add(flaskGroup);
-
-    // Position camera
-    camera.position.z = 8;
-    camera.position.y = 1;
-
-    // Add controls
-    const controls = new THREE.OrbitControls(camera, canvas);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.enableZoom = true;
-
-    // Enhanced animation with subtle movements
-    let time = 0;
-    function animate() {
-        requestAnimationFrame(animate);
-        time += 0.01;
-
-        // Subtle liquid movement
-        liquid.position.y = -0.75 + Math.sin(time) * 0.02;
-        
-        // Very subtle flask movement for more realism
-        flaskGroup.rotation.y += 0.002;
-        flaskGroup.rotation.x = Math.sin(time * 0.5) * 0.02;
-
-        controls.update();
-        renderer.render(scene, camera);
-    }
-
-    animate();
 }
 
 // Enhanced Navigation
@@ -602,89 +565,35 @@ function initParticleSystem() {
         initParticles();
     });
 }
-
-// Initialize when DOM is loaded
+// Simple blog navigation
 document.addEventListener('DOMContentLoaded', () => {
-    initParticleSystem();
-    initDynamicNavigation();
-    const heroModel = document.querySelector('.hero-model');
-    heroModel.innerHTML = `
-        <div class="flask-container">
-            <div class="flask-wrapper">
-                <img src="images/flask.png" alt="Laboratory Flask" class="flask-image" loading="lazy">
-                <div class="glow-effect"></div>
-            </div>
-            <div class="popup-message">
-                <div class="popup-content">
-                    <p>Hello! 👋</p>
-                    <p>I'm Zaid Hajeer, a Chemical Engineer passionate about process innovation and sustainable solutions.</p>
-                </div>
-                <div class="popup-blur"></div>
-            </div>
-        </div>
-    `;
-
-    const flask = document.querySelector('.flask-image');
-    const popup = document.querySelector('.popup-message');
-
-    flask.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (popup.classList.contains('show-popup')) return;
-        
-        flask.classList.add('active');
-        popup.classList.add('show-popup');
-    });
-
-    document.addEventListener('click', (e) => {
-        if (popup.classList.contains('show-popup')) {
-            popup.classList.remove('show-popup');
-            flask.classList.remove('active');
-        }
-    });
-
-    popup.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-
-    // Skill bars animation
-    const skillBars = document.querySelectorAll('.skill-bar');
-    
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.3
-    };
-
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const skillBar = entry.target;
-                const progressBar = skillBar.querySelector('.progress-bar');
-                const skillName = skillBar.dataset.skill;
-                const skills = {
-                    'Process Engineering': 90,
-                    'Chemical Plant Design': 85,
-                    'Process Safety Management': 95,
-                    'Heat & Mass Transfer': 88,
-                    'Process Simulation': 82,
-                    'Unit Operations': 87
-                };
-                
-                if (progressBar && skillName in skills) {
-                    progressBar.style.width = `${skills[skillName]}%`;
-                }
-                
-                progressBar.classList.add('animate');
-                skillObserver.unobserve(skillBar);
-            }
+    // Handle blog navigation
+    const blogLink = document.querySelector('.blog-link');
+    if (blogLink) {
+        blogLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'blog/index.html';
         });
-    }, observerOptions);
+    }
+});
 
-    skillBars.forEach(skillBar => {
-        const progressBar = skillBar.querySelector('.progress-bar');
-        if (progressBar) {
-            progressBar.style.width = '0%';
-        }
-        skillObserver.observe(skillBar);
-    });
+// Flask interaction with enhanced animation
+document.addEventListener('DOMContentLoaded', () => {
+    const flaskImage = document.querySelector('.flask-image');
+    const flaskMessage = document.querySelector('.flask-message');
+    
+    if (flaskImage && flaskMessage) {
+        flaskImage.addEventListener('click', () => {
+            flaskImage.classList.add('clicked');
+            flaskMessage.classList.add('show');
+            
+            setTimeout(() => {
+                flaskMessage.classList.remove('show');
+            }, 4000); // Increased to 4 seconds
+            
+            setTimeout(() => {
+                flaskImage.classList.remove('clicked');
+            }, 1000);
+        });
+    }
 });

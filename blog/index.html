@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Tech & Engineering Blog | Zaid Hajeer - Chemical Engineering Insights</title>
+    <meta name="title" content="Tech & Engineering Blog | Zaid Hajeer - Chemical Engineering Insights">
+    <meta name="description" content="Explore expert insights on chemical engineering, AI, process innovation, and sustainable technologies. Join Zaid Hajeer's technical blog for cutting-edge perspectives.">
+    <meta name="author" content="Zaid Hajeer">
+    <meta name="keywords" content="chemical engineering blog, tech blog, engineering insights, process innovation, AI in engineering, sustainable technologies, Zaid Hajeer">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zaidhajeer.github.io/blog/">
+    <meta property="og:title" content="Tech & Engineering Blog | Zaid Hajeer">
+    <meta property="og:description" content="Explore expert insights on chemical engineering, AI, process innovation, and sustainable technologies. Join Zaid Hajeer's technical blog for cutting-edge perspectives.">
+    <meta property="og:image" content="https://zaidhajeer.github.io/assets/images/blog-featured-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zaidhajeer.github.io/blog/">
+    <meta property="twitter:title" content="Tech & Engineering Blog | Zaid Hajeer">
+    <meta property="twitter:description" content="Explore expert insights on chemical engineering, AI, process innovation, and sustainable technologies. Join Zaid Hajeer's technical blog for cutting-edge perspectives.">
+    <meta property="twitter:image" content="https://zaidhajeer.github.io/assets/images/blog-featured-image.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://zaidhajeer.github.io/blog/">
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="Zaid Hajeer's Blog RSS Feed" href="https://zaidhajeer.github.io/blog/feed.xml">
+
+    <!-- Fonts and Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="blog.css">
+
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Tech & Engineering Blog",
+        "description": "Expert insights on chemical engineering, AI, and sustainable technologies",
+        "url": "https://zaidhajeer.github.io/blog/",
+        "author": {
+            "@type": "Person",
+            "name": "Zaid Hajeer",
+            "url": "https://zaidhajeer.github.io",
+            "sameAs": [
+                "https://github.com/zaidhajeer",
+                "https://www.linkedin.com/in/zaid-hajeer-b2b2b4252/",
+                "https://twitter.com/zaidhajeer",
+                "https://www.facebook.com/zaid.hajeer.7",
+                "https://www.instagram.com/zaid_hajeer/",
+                "https://t.me/zaidhajeer"
+            ]
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Zaid Hajeer",
+            "url": "https://zaidhajeer.github.io"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Fixed Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 id="logo">Zaid Hajeer</h1>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#portfolio">Projects</a>
+                <a href="../index.html#contact">Contact</a>
+                <a href="index.html" class="blog-link active">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <header class="blog-header">
+        <h1>Tech & Engineering blog posts</h1>
+        <p>Exploring Innovation, AI, Chemical Engineering, and Future Technologies</p>
+    </header>
+
+    <div class="blog-container">
+        <!-- Sidebar with Categories -->
+        <div class="blog-sidebar">
+            <div class="sidebar-section categories">
+                <h2>Categories</h2>
+                <ul class="category-list">
+                    <!-- Categories will be dynamically inserted here -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Blog Posts Section -->
+        <div class="blog-posts">
+            <div class="posts-grid" id="blogPostsContainer">
+                <!-- Posts will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Zaid Hajeer. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts - Note the new order and inline script -->
+    <script src="../script.js"></script>
+    <script>
+        // Ensure mobile menu works on blog pages
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinksContainer = document.querySelector('.nav-links');
+
+            if (menuToggle && navLinksContainer) {
+                // Toggle menu when clicking the hamburger
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    menuToggle.classList.toggle('active');
+                    navLinksContainer.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!navLinksContainer.contains(e.target) && !menuToggle.contains(e.target)) {
+                        menuToggle.classList.remove('active');
+                        navLinksContainer.classList.remove('active');
+                    }
+                });
+
+                // Close menu when clicking a link
+                navLinksContainer.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        navLinksContainer.classList.remove('active');
+                    });
+                });
+
+                // Prevent menu from closing when clicking inside
+                navLinksContainer.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+    <script src="data/posts.js"></script>
+    <script src="js/blog-list.js"></script>
+    <script src="js/categories.js"></script>
+</body>
+</html> 

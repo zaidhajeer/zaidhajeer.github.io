@@ -1,3 +1,41 @@
+# zaidhajeer.github.io robots.txt
 User-agent: *
 Allow: /
-Sitemap: https://zaidhajeer.github.io/sitemap.xml 
+
+# Allow crawling of all content
+Allow: /blog/
+Allow: /blog/posts/
+Allow: /assets/
+Allow: /images/
+Allow: /*.js
+Allow: /*.css
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.ico
+
+# Prevent crawling of potential sensitive areas
+Disallow: /private/
+Disallow: /temp/
+Disallow: /drafts/
+Disallow: /*?*
+Disallow: /*?
+Disallow: /*/feed/
+Disallow: /*/trackback/
+
+# Crawl-delay for specific bots
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /images/
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.png
+Allow: /*.svg
+
+# Sitemap location
+Sitemap: https://zaidhajeer.github.io/sitemap.xml
