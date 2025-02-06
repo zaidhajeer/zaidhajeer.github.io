@@ -34,8 +34,8 @@
     <!-- Fonts and Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/blog/blog.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="blog.css">
 
     <!-- Schema.org markup -->
     <script type="application/ld+json">
@@ -70,19 +70,19 @@
     <!-- Fixed Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/" id="logo">Zaid Hajeer</a>
+            <h1 id="logo">Zaid Hajeer</h1>
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/#about">About</a></li>
-                <li><a href="/#projects">Projects</a></li>
-                <li><a href="/#contact">Contact</a></li>
-                <li><a href="/blog" class="active">Blog</a></li>
-            </ul>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#portfolio">Projects</a>
+                <a href="../index.html#contact">Contact</a>
+                <a href="./index.html" class="blog-link active">Blog</a>
+            </div>
         </div>
     </nav>
 
@@ -93,26 +93,28 @@
     </header>
 
     <div class="blog-container">
-        <aside class="categories-sidebar">
-            <h2>Categories</h2>
-            <ul class="category-list"></ul>
-        </aside>
-
-        <main id="blogPostsContainer"></main>
+        <!-- Blog Posts Section -->
+        <div class="blog-posts">
+            <div class="posts-grid" id="blogPostsContainer">
+                <!-- Posts will be dynamically inserted here -->
+            </div>
+        </div>
     </div>
 
     <!-- Mobile Categories Button -->
-    <button class="categories-toggle">
-        <i class="fas fa-list"></i>
+    <button class="categories-toggle" aria-label="Show Categories">
+        <i class="fas fa-tags"></i>
     </button>
 
     <!-- Mobile Categories Sidebar -->
     <div class="mobile-categories-sidebar">
         <div class="mobile-sidebar-header">
             <h2>Categories</h2>
-            <button class="mobile-sidebar-close">&times;</button>
+            <button class="mobile-sidebar-close" aria-label="Close categories">×</button>
         </div>
-        <ul class="category-list"></ul>
+        <ul class="category-list mobile-category-list">
+            <!-- Categories will be dynamically inserted here -->
+        </ul>
     </div>
 
     <div class="mobile-overlay"></div>
@@ -122,7 +124,7 @@
         <p>&copy; 2025 Zaid Hajeer. All rights reserved.</p>
     </footer>
 
-    <script src="/script.js"></script>
+    <script src="../script.js"></script>
     <script>
         // Ensure mobile menu works on blog pages
         document.addEventListener('DOMContentLoaded', () => {
@@ -160,7 +162,7 @@
             }
         });
     </script>
-    <script src="/blog/data/posts.js"></script>
-    <script src="/blog/js/blog-list.js"></script>
+    <script src="./data/posts.js"></script>
+    <script src="./js/blog-list.js"></script>
 </body>
 </html> 
