@@ -64,6 +64,80 @@
     <link rel="stylesheet" href="../../../styles.css">
     <link rel="stylesheet" href="../../blog.css">
     <link rel="stylesheet" href="../post.css">
+
+    <!-- Add robots meta tag to explicitly allow indexing -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Add more specific meta tags -->
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
+    
+    <!-- Add article:published_time meta tag -->
+    <meta property="article:published_time" content="2025-02-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-06T00:00:00+00:00">
+    
+    <!-- Add breadcrumb structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://zaidhajeer.github.io"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://zaidhajeer.github.io/blog"
+        },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Aluminum Corrosion",
+            "item": "https://zaidhajeer.github.io/blog/posts/Aluminum-corrosion/"
+        }]
+    }
+    </script>
+
+    <!-- Enhance existing Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Understanding Aluminum Corrosion: Mechanisms, Prevention, and Solutions",
+        "image": "https://zaidhajeer.github.io/blog/posts/Aluminum-corrosion/images/featured-image.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "Zaid Hajeer",
+            "url": "https://zaidhajeer.github.io",
+            "jobTitle": "Chemical Engineer",
+            "sameAs": [
+                "https://github.com/zaidhajeer",
+                "https://www.linkedin.com/in/zaidhajeer/",
+                "https://x.com/Zoz_JO"
+            ]
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Zaid Hajeer",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://zaidhajeer.github.io/path/to/logo.png"
+            }
+        },
+        "datePublished": "2025-02-06T00:00:00+00:00",
+        "dateModified": "2025-02-06T00:00:00+00:00",
+        "description": "Explore insights on aluminum corrosion mechanisms, prevention strategies, and industrial applications. Expert analysis from a chemical engineering perspective.",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://zaidhajeer.github.io/blog/posts/Aluminum-corrosion/"
+        },
+        "keywords": "aluminum corrosion, chemical engineering, corrosion prevention, material science, industrial applications",
+        "articleSection": "Chemical Engineering",
+        "wordCount": "5000"
+    }
+    </script>
 </head>
 <body>
     <!-- Fixed Navigation -->
@@ -83,6 +157,15 @@
                 <a href="../../index.html" class="blog-link">Blog</a>
             </div>
         </div>
+    </nav>
+
+    <!-- Add visible breadcrumb navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../index.html">Blog</a></li>
+            <li aria-current="page">Aluminum Corrosion</li>
+        </ol>
     </nav>
 
     <!-- Blog Post Content -->
@@ -398,9 +481,41 @@
         </article>
     </main>
 
+    <!-- Add related articles section before footer -->
+    <section class="related-posts">
+        <h2>Related Articles</h2>
+        <div class="related-posts-grid">
+            <script>
+                // Filter and display related posts based on categories and tags
+                const relatedPosts = posts
+                    .filter(post => post.id !== 'Aluminum-corrosion')
+                    .filter(post => {
+                        const currentPost = posts.find(p => p.id === 'Aluminum-corrosion');
+                        return post.categories.some(cat => 
+                            currentPost.categories.includes(cat)) ||
+                            post.tags.some(tag => 
+                            currentPost.tags.includes(tag));
+                    })
+                    .slice(0, 3);
+
+                relatedPosts.forEach(post => {
+                    document.write(`
+                        <article class="related-post-card">
+                            <a href="../${post.id}/">
+                                <img src="../${post.id}/images/featured-image.jpg" alt="${post.title}">
+                                <h3>${post.title}</h3>
+                                <p>${post.excerpt}</p>
+                            </a>
+                        </article>
+                    `);
+                });
+            </script>
+        </div>
+    </section>
+
     <!-- Fixed Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Zaid Hajeer. All rights reserved.</p>
+        <p>&copy; 2025 Zaid Hajeer. All rights reserved.</p>
     </footer>
 
     <script src="../../../script.js"></script>
@@ -542,6 +657,91 @@
             justify-content: center;
             width: 100%;
         }
+    }
+
+    /* Breadcrumb styles */
+    .breadcrumb {
+        padding: 1rem 2rem;
+        background: #f8f9fa;
+        margin-bottom: 2rem;
+    }
+
+    .breadcrumb ol {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .breadcrumb li {
+        display: flex;
+        align-items: center;
+    }
+
+    .breadcrumb li:not(:last-child)::after {
+        content: "/";
+        margin: 0 0.5rem;
+        color: #6c757d;
+    }
+
+    .breadcrumb a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+
+    /* Related posts styles */
+    .related-posts {
+        padding: 2rem 0;
+        background: #f8f9fa;
+        margin-top: 3rem;
+    }
+
+    .related-posts h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .related-posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+
+    .related-post-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .related-post-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .related-post-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .related-post-card h3 {
+        padding: 1rem;
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    .related-post-card p {
+        padding: 0 1rem 1rem;
+        margin: 0;
+        color: #666;
+        font-size: 0.9rem;
     }
     </style>
 </body>

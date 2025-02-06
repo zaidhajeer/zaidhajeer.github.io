@@ -102,12 +102,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Create audio element for click sound
+const clickSound = new Audio();
+clickSound.src = './blog/sounds/click.mp3';
+clickSound.volume = 0.7;
+
+// Single function to play sound with error handling
+function playClickSound() {
+    const sound = new Audio('./blog/sounds/click.mp3');
+    sound.volume = 0.7;
+    sound.play().catch(err => {
+        console.error('Sound play failed:', err);
+    });
+}
+
 // Blog and navigation handling
 const blogLink = document.querySelector('.blog-link');
 if (blogLink) {
     blogLink.addEventListener('click', (e) => {
         e.preventDefault();
-        window.location.href = '/blog/index.html';
+        playClickSound();
+        setTimeout(() => {
+            window.location.href = '/blog/index.html';
+        }, 100);
     });
 }
 
@@ -115,7 +132,11 @@ if (blogLink) {
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinksContainer = document.querySelector('.nav-links');
+    const hireButton = document.querySelector('.hire-me-btn');
+    const backToTopButton = document.querySelector('.back-to-top');
+    const blogLink = document.querySelector('.blog-link');
 
+    // Mobile menu toggle
     if (menuToggle && navLinksContainer) {
         // Toggle menu when clicking the hamburger
         menuToggle.addEventListener('click', (e) => {
@@ -139,10 +160,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 navLinksContainer.classList.remove('active');
             });
         });
+    }
 
-        // Prevent menu from closing when clicking inside
-        navLinksContainer.addEventListener('click', (e) => {
-            e.stopPropagation();
+    // Back to top button
+    if (backToTopButton) {
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Blog link
+    if (blogLink) {
+        blogLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '/blog/index.html';
         });
     }
 });
@@ -565,6 +599,7 @@ function initParticleSystem() {
         initParticles();
     });
 }
+
 // Simple blog navigation
 document.addEventListener('DOMContentLoaded', () => {
     // Handle blog navigation

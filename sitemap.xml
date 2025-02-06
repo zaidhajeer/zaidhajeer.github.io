@@ -29,7 +29,7 @@
 
     <!-- Blog Posts -->
     <url>
-        <loc>https://zaidhajeer.github.io/blog/posts/Aluminum-corrosion/</loc>
+        <loc>https://zaidhajeer.github.io/blog/posts/Aluminum-corrosion/index.html</loc>
         <lastmod>2025-02-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -45,7 +45,7 @@
         <loc>https://zaidhajeer.github.io/#portfolio</loc>
         <lastmod>2025-02-06</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.8</priority>
     </url>
 
     <!-- About Section -->
@@ -61,6 +61,6 @@
         <loc>https://zaidhajeer.github.io/#contact</loc>
         <lastmod>2025-02-06</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
     </url>
 </urlset>
