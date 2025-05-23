@@ -23,6 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="./styles.css">
     <script type="application/ld+json">
@@ -94,9 +95,12 @@
                 <a href="#contact" class="cta-button">Hire Me</a>
             </div>
             <div class="hero-image">
-                <img src="images/flask.png" alt="Chemical Flask" class="flask-image" title="Click me!">
+                <!-- <img src="images/flask.png" alt="Chemical Flask" class="flask-image" title="Click me!">
                 <div class="flask-message">
                     <p>🧪 Welcome to Zaid's Lab!<br><span class="highlight-text">Let's Transform Ideas into Innovation!</span> 🚀</p>
+                </div> -->
+                <div id="hero-3d-container" style="width: 100%; height: 400px; position: relative;">
+                    <div id="loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--primary-color); font-family: 'Nunito', sans-serif;">Loading 3D Model...</div>
                 </div>
             </div>
         </div>
@@ -159,95 +163,114 @@
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
-        <h2 class="section-title">My Work</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="images/materials.jpg" 
-                     alt="Python-based materials properties calculation tool for engineering applications" 
-                     loading="lazy"
-                     width="400" 
-                     height="300">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Materials properties</h3>
-                    <p class="portfolio-description">Python tool that fetches material properties and performs essential calculations for engineering and research.</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">Python</span>
-                        <span class="portfolio-tag">Material science</span>
-                        <span class="portfolio-tag">Chemical engineering</span>
+        <h2 class="section-title animate-on-scroll fade-in-up">My Work</h2>
+        <div class="carousel-container">
+            <div class="project-carousel">
+                <!-- Card 1: Materials properties -->
+                <div class="carousel-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/materials.jpg" alt="Python-based materials properties calculation tool for engineering applications">
+                            <h3>Materials properties</h3>
+                        </div>
+                        <div class="card-back">
+                            <h3>Materials properties</h3>
+                            <p>Python tool that fetches material properties and performs essential calculations for engineering and research.</p>
+                            <div class="portfolio-tags">
+                                <span class="portfolio-tag">Python</span>
+                                <span class="portfolio-tag">Material science</span>
+                                <span class="portfolio-tag">Chemical engineering</span>
+                            </div>
+                            <button class="details-btn" data-description="Python tool that fetches material properties and performs essential calculations for engineering and research. Ideal for quick lookups and complex calculations in material science and chemical engineering workflows.">View Details</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="portfolio-item">
-                <img src="images/portfolio.jpg" 
-                     alt="Modern portfolio website showcasing professional web development skills" 
-                     loading="lazy"
-                     width="400" 
-                     height="300">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Portfolio design project</h3>
-                    <p class="portfolio-description">A refined website project built with HTML, CSS, and JavaScript. It elegantly presents professional achievements and creative projects through a modern, user-friendly design.</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">HTML</span>
-                        <span class="portfolio-tag">CSS</span>
-                        <span class="portfolio-tag">JS</span>
+                <!-- Card 2: Portfolio design project -->
+                <div class="carousel-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/portfolio.jpg" alt="Modern portfolio website showcasing professional web development skills">
+                            <h3>Portfolio design project</h3>
+                        </div>
+                        <div class="card-back">
+                            <h3>Portfolio design project</h3>
+                            <p>A refined website project built with HTML, CSS, and JavaScript. It elegantly presents professional achievements and creative projects through a modern, user-friendly design.</p>
+                            <div class="portfolio-tags">
+                                <span class="portfolio-tag">HTML</span>
+                                <span class="portfolio-tag">CSS</span>
+                                <span class="portfolio-tag">JS</span>
+                            </div>
+                            <button class="details-btn" data-description="A refined website project built with HTML, CSS, and JavaScript. It elegantly presents professional achievements and creative projects through a modern, user-friendly design. Features responsive layout, smooth animations, and interactive elements.">View Details</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+                
+                <!-- Card 3: Utilizing Kaolin Adsorbent for Phenol Removal -->
+                <div class="carousel-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/graduation-project.webp" alt="Research project on kaolin adsorbent for phenol removal from water">
+                            <h3>Phenol Removal via Kaolin</h3>
+                        </div>
+                        <div class="card-back">
+                            <h3>Utilizing Kaolin Adsorbent for Phenol Removal</h3>
+                            <p>This graduation project explores kaolin's effectiveness in removing phenol from water through optimized adsorption conditions and process kinetics analysis.</p>
+                            <div class="portfolio-tags">
+                                <span class="portfolio-tag">Adsorption</span>
+                                <span class="portfolio-tag">Lab Techniques</span>
+                                <span class="portfolio-tag">Data Analysis</span>
+                            </div>
+                            <button class="details-btn" data-description="This graduation project explores kaolin's effectiveness in removing phenol from water through optimized adsorption conditions and process kinetics analysis. Includes experimental setup, data interpretation, and modeling of adsorption isotherms.">View Details</button>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="portfolio-item">
-                <img src="images/graduation-project.webp" 
-                     alt="Research project on kaolin adsorbent for phenol removal from water" 
-                     loading="lazy"
-                     width="400" 
-                     height="300">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Utilizing Kaolin Adsorbent for Phenol Removal</h3>
-                    <p class="portfolio-description">This graduation project explores kaolin's effectiveness in removing phenol from water through optimized adsorption conditions and process kinetics analysis.</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">Adsorption</span>
-                        <span class="portfolio-tag">Laboratory Techniques</span>
-                        <span class="portfolio-tag">Technical Communication</span>
-                        <span class="portfolio-tag">Data Analysis & Modeling</span>
+                <!-- Card 4: Upwork Translation Services -->
+                 <div class="carousel-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/upwork.webp" alt="Professional translation services portfolio on Upwork platform">
+                            <h3>Upwork Translation</h3>
+                        </div>
+                        <div class="card-back">
+                            <h3>Upwork Translation Services</h3>
+                            <p>This project delivers high-quality, culturally nuanced translation solutions on the Upwork platform, bridging language barriers and enhancing global communication for diverse clients.</p>
+                            <div class="portfolio-tags">
+                                <span class="portfolio-tag">Translation</span>
+                                <span class="portfolio-tag">Writing</span>
+                                <span class="portfolio-tag">Communication</span>
+                            </div>
+                            <button class="details-btn" data-description="This project delivers high-quality, culturally nuanced translation solutions on the Upwork platform, bridging language barriers and enhancing global communication for diverse clients. Specialized in technical, academic, and general content.">View Details</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="portfolio-item">
-                <img src="images/upwork.webp" 
-                     alt="Professional translation services portfolio on Upwork platform" 
-                     loading="lazy"
-                     width="400" 
-                     height="300">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Upwork Translation Services</h3>
-                    <p class="portfolio-description">This project delivers high-quality, culturally nuanced translation solutions on the Upwork platform, bridging language barriers and enhancing global communication for diverse clients.</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">Translation</span>
-                        <span class="portfolio-tag">Writing</span>
-                        <span class="portfolio-tag">Communication</span>
+                <!-- Card 5: Graphic Design Projects -->
+                <div class="carousel-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/graphic-design.webp" alt="Creative graphic design portfolio featuring digital and print media solutions">
+                            <h3>Graphic Design Projects</h3>
+                        </div>
+                        <div class="card-back">
+                            <h3>Graphic Design Projects</h3>
+                            <p>This project features a collection of innovative graphic design works that emphasize creative visual communication. It highlights expertise in layout, typography, and color theory to deliver compelling digital and print media solutions.</p>
+                            <div class="portfolio-tags">
+                                <span class="portfolio-tag">Photoshop</span>
+                                <span class="portfolio-tag">Illustrator</span>
+                                <span class="portfolio-tag">Canva</span>
+                            </div>
+                             <button class="details-btn" data-description="This project features a collection of innovative graphic design works that emphasize creative visual communication. It highlights expertise in layout, typography, and color theory to deliver compelling digital and print media solutions for social media, branding, and advertisements.">View Details</button>
+                        </div>
                     </div>
                 </div>
+
             </div>
-            <div class="portfolio-item">
-                <img src="images/graphic-design.webp" 
-                     alt="Creative graphic design portfolio featuring digital and print media solutions" 
-                     loading="lazy"
-                     width="400" 
-                     height="300">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Graphic Design Projects</h3>
-                    <p class="portfolio-description">This project features a collection of innovative graphic design works that emphasize creative visual communication. It highlights expertise in layout, typography, and color theory to deliver compelling digital and print media solutions.</p>
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">Photoshop</span>
-                        <span class="portfolio-tag">illustrator</span>
-                        <span class="portfolio-tag">Canva</span>
-                        <span class="portfolio-tag">Social Media Designs</span>
-                        <span class="portfolio-tag">Ads Design</span>
-                    </div>
-                </div>
-            </div>
+            <button class="carousel-nav prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav next-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
+        <!-- Popup structure for details will be managed by existing JS or adapted -->
     </section>
 
     <!-- Contact Section -->
