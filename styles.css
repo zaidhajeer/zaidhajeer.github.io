@@ -6,10 +6,10 @@
 }
 
 :root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
-    --text-color: #1f2937;
-    --light-bg: #f3f4f6;
+    --primary-color: #00C9A7; /* Lively Teal */
+    --secondary-color: #FFB627; /* Sunny Orange */
+    --text-color: #333333; /* Dark Gray for better readability */
+    --light-bg: #F0FDF4; /* Very Light Mint Green */
     --transition: all 0.3s ease;
 }
 
@@ -100,7 +100,11 @@ section {
     color: var(--text-color);
     font-weight: 500;
     padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, color 0.2s ease; /* Added color transition */
+}
+
+.nav-links a:hover { /* Subtle text color change on hover */
+    color: var(--primary-color);
 }
 
 /* Indicator line */
@@ -138,7 +142,7 @@ section {
     background: linear-gradient(
         90deg,
         var(--primary-color),
-        #4f46e5
+        var(--secondary-color) /* Use secondary theme color */
     );
     transition: width 0.1s ease;
 }
@@ -247,13 +251,21 @@ section {
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: 500;
-    transition: var(--transition);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Refined transition */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button:hover {
     background: var(--secondary-color);
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.05); /* Add a slight lift and scale */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+
+.cta-button:active { /* Added active state for click feedback */
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 
 /* About Section */
 .about {
@@ -306,7 +318,7 @@ section {
 
 .progress {
     height: 0.6rem;
-    background: rgba(37, 99, 235, 0.1);
+    background: rgba(0, 201, 167, 0.1); /* Use primary color with alpha */
     border-radius: 1rem;
     overflow: hidden;
     position: relative;
@@ -317,7 +329,7 @@ section {
     width: 0;
     background: linear-gradient(90deg, 
         var(--primary-color) 0%,
-        #1e40af 100%);
+        var(--secondary-color) 100%); /* Use primary and secondary theme colors */
     border-radius: 1rem;
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -353,90 +365,10 @@ section {
 }
 
 /* Portfolio Section */
-.portfolio {
-    padding: 6rem 2rem;
-    background: var(--light-bg);
-}
-
-.portfolio-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-    padding: 1rem;
-}
-
-.portfolio-item {
-    position: relative;
-    border-radius: 1rem;
-    overflow: hidden;
-    background: white;
-    box-shadow: 
-        0 10px 30px rgba(0,0,0,0.08),
-        0 2px 8px rgba(0,0,0,0.06);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-}
-
-.portfolio-item img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.portfolio-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 1.5rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.portfolio-title {
-    font-size: 1.2rem;
-    margin-bottom: 0.8rem;
-    color: #fff;
-    line-height: 1.2;
-}
-
-.portfolio-description {
-    font-size: 0.9rem;
-    color: #ddd;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.read-more-btn {
-    display: inline-block;
-    padding: 0.3rem 0.6rem;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 3px;
-    font-size: 0.8rem;
-    color: #fff;
-    cursor: pointer;
-    transition: var(--transition);
-    border: none;
-    margin-top: 0.5rem;
-}
-
-.read-more-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
+/* Styles for .portfolio, .portfolio-grid, .portfolio-item, .portfolio-overlay, 
+   .portfolio-title, .portfolio-description, .read-more-btn 
+   are now superseded by the carousel styles or handled by the .is-hidden rule at the end of the file.
+   The original definitions are removed to prevent conflicts and ensure the new carousel is the sole display method. */
 
 .description-popup {
     position: absolute;
@@ -449,7 +381,7 @@ section {
     box-shadow: 
         0 10px 40px rgba(0, 0, 0, 0.1),
         0 0 0 1px rgba(255, 255, 255, 0.8),
-        0 0 0 4px rgba(37, 99, 235, 0.1);
+        0 0 0 4px rgba(0, 201, 167, 0.1); /* Use primary color with alpha */
     max-width: 90%;
     width: 320px;
     opacity: 0;
@@ -629,34 +561,8 @@ section {
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
-    .portfolio-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-        padding: 0.5rem;
-    }
-
-    .portfolio-item img {
-        height: 240px;
-    }
-
-    .portfolio-overlay {
-        opacity: 1;
-        transform: translateY(0);
-        background: linear-gradient(
-            to top,
-            rgba(37,99,235,0.95) 0%,
-            rgba(37,99,235,0.4) 100%
-        );
-    }
-
-    .portfolio-title,
-    .portfolio-description,
-    .portfolio-tag {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* Old responsive styles for .portfolio-grid, .portfolio-item etc. are removed as they are no longer used. */
+/* New responsive styles for the carousel are located at the end of the file with the other carousel styles. */
 
 /* Contact Section */
 .contact {
@@ -702,7 +608,7 @@ section {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 201, 167, 0.1); /* Use primary color with alpha */
 }
 
 .submit-btn {
@@ -714,12 +620,19 @@ section {
     border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Refined transition */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .submit-btn:hover {
     background: var(--secondary-color);
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.03); /* Add a slight lift and scale */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:active { /* Added active state for click feedback */
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .submit-btn:disabled {
@@ -968,16 +881,16 @@ section {
     height: auto;
     cursor: pointer;
     transition: all 0.5s ease;
-    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.1));
+    filter: drop-shadow(0 0 10px rgba(0, 201, 167, 0.1)); /* Use primary color with alpha */
 }
 
 .flask-image:hover {
-    filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.2));
+    filter: drop-shadow(0 0 15px rgba(0, 201, 167, 0.2)); /* Use primary color with alpha */
 }
 
 .flask-image.clicked {
     animation: flaskPulse 1s ease;
-    filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4));
+    filter: drop-shadow(0 0 20px rgba(0, 201, 167, 0.4)); /* Use primary color with alpha */
 }
 
 .flask-message {
@@ -991,7 +904,7 @@ section {
     padding: 15px 25px;
     border-radius: 20px;
     box-shadow: 
-        0 4px 30px rgba(37, 99, 235, 0.15),
+        0 4px 30px rgba(0, 201, 167, 0.15), /* Use primary color with alpha */
         inset 0 1px 1px rgba(255, 255, 255, 0.8);
     opacity: 0;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1166,7 +1079,7 @@ section {
     width: 300px;
     height: 300px;
     background: radial-gradient(circle at center, 
-                rgba(37, 99, 235, 0.1) 0%,
+                rgba(0, 201, 167, 0.1) 0%, /* Use primary color with alpha */
                 transparent 70%);
     pointer-events: none;
     opacity: 0;
@@ -1179,7 +1092,7 @@ section {
 
 /* Enhance text selection */
 .popup-message ::selection {
-    background: rgba(37, 99, 235, 0.2);
+    background: rgba(0, 201, 167, 0.2); /* Use primary color with alpha */
     color: var(--primary-color);
 }
 
@@ -1401,6 +1314,67 @@ section {
     transform: translateY(0);
 }
 
+/* Scroll Animation Classes */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.slide-in-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.slide-in-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Styles for 3D Hero section */
+#hero-3d-container {
+    width: 100%;
+    height: 400px; /* Or match hero-model height */
+    position: relative;
+    cursor: grab; /* Indicate interactivity */
+}
+
+#hero-3d-container canvas {
+    display: block; /* Remove any extra space below canvas */
+}
+
+#loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-color);
+    font-family: 'Nunito', sans-serif; /* Match website font */
+    font-size: 1.2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8); /* Slight background for readability */
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+
 /* Text highlight effect */
 .highlight-text {
     position: relative;
@@ -1414,7 +1388,7 @@ section {
     left: 0;
     width: 100%;
     height: 30%;
-    background: rgba(37, 99, 235, 0.1);
+    background: rgba(0, 201, 167, 0.1); /* Use primary color with alpha */
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.6s cubic-bezier(0.13, 0.62, 0.11, 0.99);
@@ -1450,3 +1424,286 @@ section {
     justify-content: center;
     align-items: center;
 }
+
+/* === PROJECT CAROUSEL STYLES START === */
+
+/* Portfolio Section - Updated for Carousel */
+.portfolio {
+    /* padding: 6rem 2rem; */ /* Already defined, check if adjustment needed */
+    /* background: var(--light-bg); */ /* Already defined */
+    overflow-x: hidden; /* Prevent horizontal scroll if carousel is wider */
+    position: relative; /* For absolute positioning of nav buttons */
+}
+
+.carousel-container {
+    max-width: 100%; 
+    margin: 2rem auto; /* Add some vertical margin */
+    position: relative;
+    padding: 2rem 0; 
+}
+
+.project-carousel {
+    position: relative;
+    width: 100%;
+    height: 480px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1800px; 
+    transform-style: preserve-3d; 
+}
+
+.carousel-card {
+    position: absolute; 
+    width: 340px;    
+    height: 450px;   
+    transform-style: preserve-3d; /* Important for the card's children */
+    transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.5s ease;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    cursor: pointer;
+    opacity: 0.7; 
+    background-color: #fff; 
+}
+
+.carousel-card.active {
+    opacity: 1;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    z-index: 10; 
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border-radius: 1rem;
+    overflow: hidden; /* Clip content like images */
+    background-color: #fff; 
+}
+
+.carousel-card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Distribute content nicely */
+    padding: 1.5rem;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    text-align: center; 
+}
+
+.card-front img {
+    width: 100%;
+    height: 220px; 
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0,0,0,0.05); 
+}
+
+.card-front h3 {
+    font-size: 1.5rem; 
+    color: var(--text-color);
+    margin-top: auto; 
+    margin-bottom: 0.5rem; /* Ensure some space at bottom */
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background-color: var(--primary-color);
+    color: white;
+    justify-content: center; /* Better vertical centering for back */
+}
+
+.card-back h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-back p {
+    font-size: 0.9rem; 
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 0; /* Prevent excessive growth */
+    max-height: 120px; 
+    overflow-y: auto; /* Enable scroll for long descriptions */
+}
+
+.portfolio-tags { /* Re-styling for card back */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem; 
+}
+
+.portfolio-tag { /* Re-styling for card back */
+    background: rgba(255, 255, 255, 0.25); 
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px; 
+    font-size: 0.7rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+}
+
+.details-btn {
+    padding: 0.7rem 1.4rem; 
+    background: var(--secondary-color);
+    color: var(--text-color); 
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-weight: 600; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.details-btn:hover {
+    background: #FFC83D; 
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Navigation Buttons */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0rem; 
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100; 
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 48px;  
+    height: 48px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.carousel-nav:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.carousel-nav i { 
+    font-size: 1.2rem;
+}
+
+.prev-btn {
+    left: 20px; 
+}
+
+.next-btn {
+    right: 20px; 
+}
+
+/* Responsive adjustments for carousel */
+@media (max-width: 992px) { /* Tablet size */
+    .project-carousel {
+        height: 440px;
+    }
+    .carousel-card {
+        width: 300px;
+        height: 420px;
+    }
+    .card-front h3, .card-back h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) { /* Mobile landscape / Small Tablet */
+    .portfolio {
+        padding: 4rem 1rem; 
+    }
+    .project-carousel {
+        height: 420px;
+        perspective: 1200px; 
+    }
+    .carousel-card {
+        width: 280px;
+        height: 400px;
+    }
+    .card-front img {
+        height: 180px;
+    }
+    .card-front h3, .card-back h3 {
+        font-size: 1.2rem;
+    }
+    .card-back p {
+        font-size: 0.85rem;
+        max-height: 100px;
+    }
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+    }
+    .carousel-nav i {
+        font-size: 1rem;
+    }
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
+}
+
+@media (max-width: 480px) { /* Mobile portrait */
+    .project-carousel {
+        display: flex; 
+        overflow-x: auto; 
+        overflow-y: hidden;
+        padding-left: 20px; 
+        padding-right: 20px;
+        scroll-snap-type: x mandatory; 
+        perspective: none; /* Switch off 3D for simpler scroll */
+        transform-style: flat; /* Switch off 3D for simpler scroll */
+        height: auto; 
+        padding-bottom: 20px; 
+        justify-content: flex-start; 
+    }
+    .carousel-card {
+        position: relative; 
+        transform: none !important; 
+        opacity: 1 !important; 
+        margin-right: 15px; 
+        flex-shrink: 0; 
+        scroll-snap-align: center; 
+        width: calc(100vw - 60px); 
+        max-width: 300px; 
+        height: 420px; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15) !important;
+    }
+    .carousel-card:last-child {
+        margin-right: 0; /* No margin for the last card */
+    }
+     .carousel-card.is-flipped .card-inner { /* Ensure flip still works in 2D scroll */
+        transform: rotateY(180deg);
+    }
+    .carousel-nav { /* Hide 3D nav buttons on mobile scroll view */
+        display: none;
+    }
+}
+
+/* Ensure old grid/item styles are fully gone or overridden */
+.portfolio-grid, .portfolio-item, .portfolio-overlay {
+    display: none !important;
+}
+
+/* === PROJECT CAROUSEL STYLES END === */
